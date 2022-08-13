@@ -14,3 +14,7 @@ export const fetchStatesError = (payload: string) => ({
   payload,
 });
 // ------------------------------------------------------------------------
+export const setPageUsers = (payload: number) => ({
+  type: StatesActionTypes.SET_USERS,
+  payload,
+});

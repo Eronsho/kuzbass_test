@@ -1,13 +1,17 @@
 import React, { memo } from "react";
-const TestsItems: React.FC = memo(({}) => {
+import { Data } from "../types";
+type UsersListProps = {
+  user: Data;
+};
+const TestsItems: React.FC<UsersListProps> = memo(({ user }) => {
   return (
     <>
       <tbody>
         <tr>
-          <td>id</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>{user.id}</td>
+          <td>{user.first_name}</td>
+          <td>{user.last_name}</td>
+          <td>{user.email}</td>
           <td>@mdo</td>
         </tr>
       </tbody>

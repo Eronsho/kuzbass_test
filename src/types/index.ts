@@ -3,10 +3,10 @@ export interface States {
   loading: boolean;
   error: null | string;
   sort: boolean;
-  page: number | null;
-  per_page: number | null;
-  total: number | null;
-  total_pages: number | null;
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
 }
 export interface Data {
   id: number;
@@ -17,21 +17,19 @@ export interface Data {
 }
 export interface Response {
   data: Data[];
-  page: number | null;
-  per_page: number | null;
-  total: number | null;
-  total_pages: number | null;
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
 }
 export interface FetchDatePayload {
   page: number | null;
-  per_page: number | null;
-  total: number | null;
-  total_pages: number | null;
 }
 export enum StatesActionTypes {
   FETCH_STATES = "FETCH_STATES",
   FETCH_STATES_SUCCESSS = " FETCH_STATES_SUCCESSS",
   FETCH_STATES_ERROR = "FETCH_STATES_ERROR",
+  SET_USERS = "SET_USERS",
 }
 interface FetchStatesAction {
   type: StatesActionTypes.FETCH_STATES;
@@ -46,8 +44,13 @@ interface FetchStatesErrorAction {
   type: StatesActionTypes.FETCH_STATES_ERROR;
   payload: string;
 }
+interface SetPageUserAction {
+  type: StatesActionTypes.SET_USERS;
+  payload: number;
+}
 export type StatesAction =
   | FetchStatesAction
   | FetchStatesSuccsessAction
-  | FetchStatesErrorAction;
+  | FetchStatesErrorAction
+  | SetPageUserAction;
 // ---------------------------------------------------------------------

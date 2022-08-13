@@ -1,7 +1,6 @@
 import React, { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 const TestsList: React.FC = memo(() => {
-  const dispatch = useDispatch();
   return (
     <thead>
       <tr>
