@@ -8,6 +8,10 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Data } from "../types";
 import Pages from "./Pages";
+import CardItem from "./CardItem";
+import { Spinner } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { delUsers } from "../store/action-creators/states";
 type UsersListProps = {
   users: Data[];
   count: number;
@@ -16,6 +20,10 @@ type UsersListProps = {
 };
 const Content: React.FC<UsersListProps> = memo(
   ({ users, count, page, total_page }) => {
+    const dispatch = useDispatch();
+    const deleteUser = (id: number) => {
+      dispatch(delUsers(id));
+    };
     return (
       <Tabs
         defaultActiveKey="profile"
@@ -42,9 +50,11 @@ const Content: React.FC<UsersListProps> = memo(
         >
           <Table striped bordered hover variant="dark">
             <TestsList />
-            {users.length > 0
-              ? users.map((user) => <TestsItems user={user} />)
-              : "fwwa"}
+            {users.length > 0 ? (
+              users.map((user) => <TestsItems user={user} del={deleteUser} />)
+            ) : (
+              <Spinner animation={"grow"} />
+            )}
             <Pages count={count} pags={page} total_page={total_page} />
           </Table>
         </Tab>
@@ -63,18 +73,11 @@ const Content: React.FC<UsersListProps> = memo(
             </svg>
           }
         >
-          <Card
-            className="d-flex flex-row justify-content-between"
-            style={{ width: "100%" }}
-          >
-            <Card.Img variant="left" src="holder.js/100px180" />
-            <Card.Body>
-              <Card.Text>Card Title</Card.Text>
-              <Card.Text className="mb-10">Card Title</Card.Text>
-              <Card.Text>Card Title</Card.Text>
-            </Card.Body>
-            <Card.Footer>asf</Card.Footer>
-          </Card>
+          {users.length > 0 ? (
+            users.map((user) => <CardItem user={user} del={deleteUser} />)
+          ) : (
+            <Spinner animation={"grow"} />
+          )}
         </Tab>
       </Tabs>
     );

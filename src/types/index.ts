@@ -30,6 +30,8 @@ export enum StatesActionTypes {
   FETCH_STATES_SUCCESSS = " FETCH_STATES_SUCCESSS",
   FETCH_STATES_ERROR = "FETCH_STATES_ERROR",
   SET_USERS = "SET_USERS",
+  DELETE_USERS = "DELETE_USERS",
+  DELETE_USERS_SUCCESSS = "DELETE_USERS_SUCCESSS",
 }
 interface FetchStatesAction {
   type: StatesActionTypes.FETCH_STATES;
@@ -48,9 +50,19 @@ interface SetPageUserAction {
   type: StatesActionTypes.SET_USERS;
   payload: number;
 }
+interface SetDeleteUserAction {
+  type: StatesActionTypes.DELETE_USERS;
+  payload: number;
+}
+interface SetDeleteUserSuccessAction {
+  type: StatesActionTypes.DELETE_USERS_SUCCESSS;
+  payload: number;
+}
 export type StatesAction =
   | FetchStatesAction
   | FetchStatesSuccsessAction
   | FetchStatesErrorAction
-  | SetPageUserAction;
+  | SetPageUserAction
+  | SetDeleteUserAction
+  | SetDeleteUserSuccessAction;
 // ---------------------------------------------------------------------

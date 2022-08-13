@@ -18,3 +18,12 @@ export const setPageUsers = (payload: number) => ({
   type: StatesActionTypes.SET_USERS,
   payload,
 });
+
+export const delUsers = (payload: number) => ({
+  type: StatesActionTypes.DELETE_USERS,
+  payload,
+});
+export const setDelUsers = (payload: number) => ({
+  type: StatesActionTypes.DELETE_USERS_SUCCESSS,
+  payload,
+});

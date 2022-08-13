@@ -45,8 +45,19 @@ export const statesReducer = (state = State, action: StatesAction): States => {
         total: state.total,
         total_pages: state.total_pages,
       };
-    case StatesActionTypes.SET_USERS:
+    case StatesActionTypes.DELETE_USERS_SUCCESSS:
       debugger;
+      return {
+        state: [...state.state.slice().filter((e) => e.id !== action.payload)],
+        loading: false,
+        error: state.error,
+        sort: state.sort,
+        page: state.page,
+        per_page: state.per_page,
+        total: state.total,
+        total_pages: state.total_pages,
+      };
+    case StatesActionTypes.SET_USERS:
       return {
         state: state.state,
         loading: false,
