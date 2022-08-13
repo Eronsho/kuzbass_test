@@ -1,6 +1,6 @@
-import { States, StatesActionTypes } from "../../types/index";
+import { FetchDatePayload, States, StatesActionTypes } from "../../types/index";
 
-export const fetchStatesRequest = (payload: States[]) => ({
+export const fetchStatesRequest = (payload: FetchDatePayload) => ({
   type: StatesActionTypes.FETCH_STATES,
   payload,
 });
