@@ -1,5 +1,8 @@
+import { type } from "os";
+
 export interface States {
   state: Data[];
+  removeUser: Data | null;
   loading: boolean;
   error: null | string;
   sort: boolean;
@@ -9,11 +12,11 @@ export interface States {
   total_pages: number;
 }
 export interface Data {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
+  id: number | undefined;
+  email: string | undefined;
+  first_name: string | undefined;
+  last_name: string | undefined;
+  avatar: string | undefined;
 }
 export interface Response {
   data: Data[];
@@ -21,6 +24,14 @@ export interface Response {
   per_page: number;
   total: number;
   total_pages: number;
+}
+export interface oneResponse {
+  data: Data;
+  support: Supor[];
+}
+export interface Supor {
+  text: string;
+  url: string;
 }
 export interface FetchDatePayload {
   page: number | null;
@@ -66,3 +77,31 @@ export type StatesAction =
   | SetDeleteUserAction
   | SetDeleteUserSuccessAction;
 // ---------------------------------------------------------------------
+export enum RemoveUserActionTypes {
+  REMOVE_USER = "REMOVE_USER",
+  REMOVE_USERS_SUCCESSS = " REMOVE_USER_SUCCESSS",
+  REMOVE_USER_ERROR = "REMOVE_USER_ERROR",
+  REMOVE_SAVE_USER = "REMOVE_SAVE_USERS",
+}
+interface RemoveUserAction {
+  type: RemoveUserActionTypes.REMOVE_USER;
+  payload: number;
+}
+
+interface RemoveUserSuccessAction {
+  type: RemoveUserActionTypes.REMOVE_USERS_SUCCESSS;
+  payload: oneResponse;
+}
+interface RemoveUserErrorAction {
+  type: RemoveUserActionTypes.REMOVE_USER_ERROR;
+  payload: string;
+}
+interface RemoveSaveUserAction {
+  type: RemoveUserActionTypes.REMOVE_SAVE_USER;
+  payload: Data;
+}
+export type RemoveAction =
+  | RemoveUserAction
+  | RemoveUserSuccessAction
+  | RemoveUserErrorAction
+  | RemoveSaveUserAction;

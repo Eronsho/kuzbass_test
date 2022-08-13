@@ -11,18 +11,24 @@ import Pages from "./Pages";
 import CardItem from "./CardItem";
 import { Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { delUsers } from "../store/action-creators/states";
+import { delUsers, fetchOneUser } from "../store/action-creators/states";
 type UsersListProps = {
   users: Data[];
   count: number;
   page: number;
   total_page: number;
+  onShow: () => void;
 };
 const Content: React.FC<UsersListProps> = memo(
-  ({ users, count, page, total_page }) => {
+  ({ users, count, page, total_page, onShow }) => {
     const dispatch = useDispatch();
     const deleteUser = (id: number) => {
       dispatch(delUsers(id));
+    };
+    const removeUser = (id: number) => {
+      debugger;
+      dispatch(fetchOneUser(id));
+      onShow();
     };
     return (
       <Tabs
@@ -51,7 +57,9 @@ const Content: React.FC<UsersListProps> = memo(
           <Table striped bordered hover variant="dark">
             <TestsList />
             {users.length > 0 ? (
-              users.map((user) => <TestsItems user={user} del={deleteUser} />)
+              users.map((user) => (
+                <TestsItems user={user} del={deleteUser} remove={removeUser} />
+              ))
             ) : (
               <Spinner animation={"grow"} />
             )}
@@ -74,7 +82,9 @@ const Content: React.FC<UsersListProps> = memo(
           }
         >
           {users.length > 0 ? (
-            users.map((user) => <CardItem user={user} del={deleteUser} />)
+            users.map((user) => (
+              <CardItem user={user} del={deleteUser} remove={removeUser} />
+            ))
           ) : (
             <Spinner animation={"grow"} />
           )}
