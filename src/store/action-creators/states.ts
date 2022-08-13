@@ -1,6 +1,8 @@
+import { SortUserActionTypes } from "./../../types/index";
 import {
   Data,
   FetchDatePayload,
+  oneResponse,
   RemoveUserActionTypes,
   States,
   StatesActionTypes,
@@ -38,15 +40,20 @@ export const fetchOneUser = (payload: number) => ({
   payload,
 });
 
-export const fetchOneUserSuccess = (payload: States | null) => ({
+export const fetchOneUserSuccess = (payload: oneResponse | null) => ({
   type: RemoveUserActionTypes.REMOVE_USERS_SUCCESSS,
   payload,
 });
+
 export const fetchOneUserError = (payload: string) => ({
   type: RemoveUserActionTypes.REMOVE_USER_ERROR,
   payload,
 });
 export const removeSaveUser = (payload: Data) => ({
   type: RemoveUserActionTypes.REMOVE_SAVE_USER,
+  payload,
+});
+export const setSortUsers = (payload: string) => ({
+  type: SortUserActionTypes.SORT_USER,
   payload,
 });

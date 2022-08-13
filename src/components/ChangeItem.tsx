@@ -8,17 +8,17 @@ import { removeSaveUser } from "../store/action-creators/states";
 type сreateListProps = {
   show: boolean;
   onHide: () => void;
-  user: Data | null;
+  user: Data;
 };
 
 const ChangeItem: React.FC<сreateListProps> = ({ show, onHide, user }) => {
   const dispatch = useDispatch();
 
-  const [firstName, setFirstName] = useState(user?.first_name);
-  const [lastName, setLastName] = useState(user?.last_name);
-  const [email, setEmail] = useState(user?.email);
-  const [avatar, setAvatar] = useState(user?.avatar);
-  const [id, setId] = useState(user?.id);
+  const [firstName, setFirstName] = useState(user.first_name);
+  const [lastName, setLastName] = useState(user.last_name);
+  const [email, setEmail] = useState(user.email);
+  const [avatar, setAvatar] = useState(user.avatar);
+  const [id, setId] = useState(user.id);
 
   debugger;
   const addDevice = () => {

@@ -12,11 +12,11 @@ export interface States {
   total_pages: number;
 }
 export interface Data {
-  id: number | undefined;
-  email: string | undefined;
-  first_name: string | undefined;
-  last_name: string | undefined;
-  avatar: string | undefined;
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
 }
 export interface Response {
   data: Data[];
@@ -105,3 +105,13 @@ export type RemoveAction =
   | RemoveUserSuccessAction
   | RemoveUserErrorAction
   | RemoveSaveUserAction;
+// -------------------------------------------------------------------------------
+
+export enum SortUserActionTypes {
+  SORT_USER = "SORT_USER",
+}
+interface SortUserErrorAction {
+  type: SortUserActionTypes.SORT_USER;
+  payload: string;
+}
+export type SortAction = SortUserErrorAction;

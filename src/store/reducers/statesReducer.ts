@@ -1,6 +1,8 @@
 import {
   RemoveAction,
   RemoveUserActionTypes,
+  SortAction,
+  SortUserActionTypes,
   States,
   StatesAction,
   StatesActionTypes,
@@ -18,7 +20,7 @@ const State: States = {
 };
 export const statesReducer = (
   state = State,
-  action: StatesAction | RemoveAction
+  action: StatesAction | RemoveAction | SortAction
 ): States => {
   switch (action.type) {
     case StatesActionTypes.FETCH_STATES:
@@ -125,10 +127,38 @@ export const statesReducer = (
     case RemoveUserActionTypes.REMOVE_SAVE_USER:
       debugger;
       return {
-        state: state.state.map((e) =>
-          e.id === action.payload.id ? action.payload : e
-        ),
-        removeUser: state.removeUser,
+        state: state.state
+          .slice()
+          .map((user) =>
+            user.id === action.payload.id ? action.payload : user
+          ),
+        removeUser: null,
+        loading: false,
+        error: state.error,
+        sort: state.sort,
+        page: state.page,
+        per_page: state.per_page,
+        total: state.total,
+        total_pages: state.total_pages,
+      };
+    case SortUserActionTypes.SORT_USER:
+      debugger;
+      return {
+        state: state.state.slice().sort((a, b): number => {
+          switch (action.payload) {
+            case "id":
+              return a.id - b.id;
+            case "email":
+              return a.email > b.email ? 1 : -1;
+            case "first_name":
+              return a.first_name > b.first_name ? 1 : -1;
+            case "last_name":
+              return a.last_name > b.last_name ? 1 : -1;
+            default:
+              return 0;
+          }
+        }),
+        removeUser: null,
         loading: false,
         error: state.error,
         sort: state.sort,
