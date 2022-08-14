@@ -30,7 +30,7 @@ const Main: React.FC = memo(() => {
   useEffect(() => {
     dispatch(
       fetchStatesRequest({
-        page: 2,
+        page: 1,
       })
     );
     console.log(state);

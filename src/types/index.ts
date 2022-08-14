@@ -110,6 +110,7 @@ export type RemoveAction =
 export enum SortUserActionTypes {
   SORT_USER = "SORT_USER",
   SEARCH_USERS = "SEARCH_USERS",
+  SEARCH_USERS_SUCCESSS = "SEARCH_USERS_SUCCESSS",
 }
 interface SortUserAction {
   type: SortUserActionTypes.SORT_USER;
@@ -120,4 +121,12 @@ interface SearchUserAction {
   payload: string;
   data: string;
 }
-export type SortAction = SortUserAction | SearchUserAction;
+interface SearchUserSuccessAction {
+  type: SortUserActionTypes.SEARCH_USERS_SUCCESSS;
+  payload: string;
+  data: string;
+}
+export type SortAction =
+  | SortUserAction
+  | SearchUserAction
+  | SearchUserSuccessAction;

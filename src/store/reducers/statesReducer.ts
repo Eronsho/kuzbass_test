@@ -167,7 +167,7 @@ export const statesReducer = (
         total: state.total,
         total_pages: state.total_pages,
       };
-    case SortUserActionTypes.SEARCH_USERS:
+    case SortUserActionTypes.SEARCH_USERS_SUCCESSS:
       debugger;
       return {
         state: [

@@ -62,3 +62,8 @@ export const setSearchtUsers = (payload: string, data: string) => ({
   payload,
   data,
 });
+export const setSearchtUsersSuccess = (payload: string, data: string) => ({
+  type: SortUserActionTypes.SEARCH_USERS_SUCCESSS,
+  payload,
+  data,
+});

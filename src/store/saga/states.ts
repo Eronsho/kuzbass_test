@@ -3,6 +3,7 @@ import { call, put, all, takeLatest } from "redux-saga/effects";
 import {
   FetchDatePayload,
   RemoveUserActionTypes,
+  SortUserActionTypes,
   StatesActionTypes,
 } from "../../types";
 import { $host } from "./../../https/index";
@@ -13,6 +14,8 @@ import {
   fetchStatesError,
   fetchStatesSuccess,
   setDelUsers,
+  setSearchtUsers,
+  setSearchtUsersSuccess,
 } from "../action-creators/states";
 const fetchUsers = (param: FetchDatePayload) => {
   return $host.get("api/users", {
@@ -29,6 +32,7 @@ const getOneUsers = (id: number) => {
   return $host.get(`api/users/${id}`);
 };
 function* FetchStatesWorker(action: any) {
+  debugger;
   try {
     const { data } = yield call(fetchUsers, action.payload);
     yield put(fetchStatesSuccess(data));
@@ -57,10 +61,21 @@ function* DeleteUserWorker(action: any) {
     console.log(e);
   }
 }
+function* SearchUserWorker(action: any) {
+  debugger;
+  try {
+    const { data } = yield call(fetchUsers, { page: 1 });
+    yield put(fetchStatesSuccess(data));
+    yield put(setSearchtUsersSuccess(action.payload, action.data));
+  } catch (e) {
+    console.log(e);
+  }
+}
 export function* fetchStateseWatcher() {
   yield all([takeLatest(StatesActionTypes.FETCH_STATES, FetchStatesWorker)]);
   yield all([takeLatest(StatesActionTypes.DELETE_USERS, DeleteUserWorker)]);
   yield all([
     takeLatest(RemoveUserActionTypes.REMOVE_USER, FetchOnUsersWorker),
   ]);
+  yield all([takeLatest(SortUserActionTypes.SEARCH_USERS, SearchUserWorker)]);
 }
