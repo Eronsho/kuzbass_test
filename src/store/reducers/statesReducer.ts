@@ -25,6 +25,7 @@ export const statesReducer = (
   switch (action.type) {
     case StatesActionTypes.FETCH_STATES:
       return {
+        ...state,
         state: state.state,
         removeUser: state.removeUser,
         loading: false,
@@ -38,6 +39,7 @@ export const statesReducer = (
     case StatesActionTypes.FETCH_STATES_SUCCESSS:
       debugger;
       return {
+        ...state,
         state: [...action.payload.data],
         removeUser: state.removeUser,
         loading: false,
@@ -50,6 +52,7 @@ export const statesReducer = (
       };
     case StatesActionTypes.FETCH_STATES_ERROR:
       return {
+        ...state,
         state: state.state,
         removeUser: state.removeUser,
         loading: false,
@@ -63,6 +66,7 @@ export const statesReducer = (
     case StatesActionTypes.DELETE_USERS_SUCCESSS:
       debugger;
       return {
+        ...state,
         state: [...state.state.slice().filter((e) => e.id !== action.payload)],
         removeUser: state.removeUser,
         loading: false,
@@ -75,6 +79,7 @@ export const statesReducer = (
       };
     case StatesActionTypes.SET_USERS:
       return {
+        ...state,
         state: state.state,
         removeUser: state.removeUser,
         loading: false,
@@ -87,6 +92,7 @@ export const statesReducer = (
       };
     case RemoveUserActionTypes.REMOVE_USER:
       return {
+        ...state,
         state: state.state,
         removeUser: state.removeUser,
         loading: false,
@@ -100,6 +106,7 @@ export const statesReducer = (
     case RemoveUserActionTypes.REMOVE_USERS_SUCCESSS:
       debugger;
       return {
+        ...state,
         state: state.state,
         removeUser:
           action.payload == null ? action.payload : action.payload.data,
@@ -114,6 +121,7 @@ export const statesReducer = (
     case RemoveUserActionTypes.REMOVE_USER_ERROR:
       debugger;
       return {
+        ...state,
         state: state.state,
         removeUser: state.removeUser,
         loading: false,
@@ -127,6 +135,7 @@ export const statesReducer = (
     case RemoveUserActionTypes.REMOVE_SAVE_USER:
       debugger;
       return {
+        ...state,
         state: state.state
           .slice()
           .map((user) =>
@@ -144,6 +153,7 @@ export const statesReducer = (
     case SortUserActionTypes.SORT_USER:
       debugger;
       return {
+        ...state,
         state: state.state.slice().sort((a, b): number => {
           switch (action.payload) {
             case "id":
@@ -170,6 +180,7 @@ export const statesReducer = (
     case SortUserActionTypes.SEARCH_USERS_SUCCESSS:
       debugger;
       return {
+        ...state,
         state: [
           ...state.state.slice().filter((user) => {
             switch (action.payload) {

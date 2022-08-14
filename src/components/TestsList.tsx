@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import {
@@ -72,7 +72,6 @@ const TestsList: React.FC = memo(() => {
             placeholder="Введите email"
           ></Form.Control>
         </th>
-        <th>Actions</th>
       </tr>
     </thead>
   );

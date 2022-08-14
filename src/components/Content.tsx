@@ -1,11 +1,9 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import Table from "react-bootstrap/Table";
 import TestsItems from "./TestsItem";
 import TestsList from "./TestsList";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import { Data } from "../types";
 import Pages from "./Pages";
 import CardItem from "./CardItem";
@@ -26,7 +24,6 @@ const Content: React.FC<UsersListProps> = memo(
       dispatch(delUsers(id));
     };
     const removeUser = (id: number) => {
-      debugger;
       dispatch(fetchOneUser(id));
       onShow();
     };

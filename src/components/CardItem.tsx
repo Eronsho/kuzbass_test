@@ -1,5 +1,4 @@
-import React, { memo, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { memo } from "react";
 import Card from "react-bootstrap/Card";
 import { Data } from "../types";
 import { Button } from "react-bootstrap";

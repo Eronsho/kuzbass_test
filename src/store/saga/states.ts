@@ -1,4 +1,3 @@
-import axios from "axios";
 import { call, put, all, takeLatest } from "redux-saga/effects";
 import {
   FetchDatePayload,
@@ -8,13 +7,11 @@ import {
 } from "../../types";
 import { $host } from "./../../https/index";
 import {
-  delUsers,
   fetchOneUserError,
   fetchOneUserSuccess,
   fetchStatesError,
   fetchStatesSuccess,
   setDelUsers,
-  setSearchtUsers,
   setSearchtUsersSuccess,
 } from "../action-creators/states";
 const fetchUsers = (param: FetchDatePayload) => {
@@ -28,11 +25,9 @@ const deleteUsers = (param: FetchDatePayload) => {
   });
 };
 const getOneUsers = (id: number) => {
-  debugger;
   return $host.get(`api/users/${id}`);
 };
 function* FetchStatesWorker(action: any) {
-  debugger;
   try {
     const { data } = yield call(fetchUsers, action.payload);
     yield put(fetchStatesSuccess(data));
@@ -44,7 +39,7 @@ function* FetchStatesWorker(action: any) {
 function* FetchOnUsersWorker(action: any) {
   try {
     const { data } = yield call(getOneUsers, action.payload);
-    debugger;
+
     yield put(fetchOneUserSuccess(data));
   } catch (e) {
     console.log(e);
@@ -52,17 +47,15 @@ function* FetchOnUsersWorker(action: any) {
   }
 }
 function* DeleteUserWorker(action: any) {
-  debugger;
   try {
     const { data } = yield call(deleteUsers, action.payload);
-    debugger;
+
     yield put(setDelUsers(action.payload));
   } catch (e) {
     console.log(e);
   }
 }
 function* SearchUserWorker(action: any) {
-  debugger;
   try {
     const { data } = yield call(fetchUsers, { page: 1 });
     yield put(fetchStatesSuccess(data));

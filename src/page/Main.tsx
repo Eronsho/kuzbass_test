@@ -7,18 +7,15 @@ import {
   fetchStatesRequest,
 } from "../store/action-creators/states";
 import ChangeItem from "../components/ChangeItem";
-import { Data } from "../types";
-import { Spinner } from "react-bootstrap";
 const Main: React.FC = memo(() => {
   const {
     page,
     removeUser,
-    loading,
+
     per_page,
     state,
-    total,
+
     total_pages,
-    sort,
   } = useTypeSelector((state) => state.states);
   const onHideModal = () => {
     setModalVisible(false);
@@ -33,7 +30,6 @@ const Main: React.FC = memo(() => {
         page: 1,
       })
     );
-    console.log(state);
   }, []);
   useEffect(() => {
     dispatch(
@@ -41,7 +37,6 @@ const Main: React.FC = memo(() => {
         page: page,
       })
     );
-    console.log(state);
   }, [page]);
   return (
     <div className="container-sm">

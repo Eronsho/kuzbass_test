@@ -16,7 +16,7 @@ const Pages: React.FC<CountProps> = ({ count, pags, total_page }) => {
   const setPage = (page: number) => {
     dispatch(setPageUsers(page));
   };
-  debugger;
+
   return (
     <Pagination className="mt-5">
       {pages.map((page) => (
@@ -24,6 +24,7 @@ const Pages: React.FC<CountProps> = ({ count, pags, total_page }) => {
           key={page}
           onClick={() => setPage(page)}
           active={pags === page}
+          activeLabel=""
         >
           {page}
         </Pagination.Item>

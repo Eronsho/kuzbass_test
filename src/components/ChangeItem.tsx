@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Dropdown, Button, Form, Col, Row, Card } from "react-bootstrap";
+import React, { useState } from "react";
+import { Modal, Button, Form, Card } from "react-bootstrap";
 import { Data } from "../types";
 
-import Image from "react-bootstrap/Image";
 import { useDispatch } from "react-redux";
 import { removeSaveUser } from "../store/action-creators/states";
 type сreateListProps = {
