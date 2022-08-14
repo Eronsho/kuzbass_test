@@ -42,8 +42,8 @@ const TestsList: React.FC = memo(() => {
           <Form.Control
             value={firstName}
             onChange={(e) => {
-              setFirstName(e.target.value),
-                searchUsers("first_name", e.target.value);
+              setFirstName(e.target.value);
+              searchUsers("first_name", e.target.value);
             }}
             className="mt-3"
             placeholder="Введите firstName"
