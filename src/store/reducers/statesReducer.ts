@@ -167,6 +167,44 @@ export const statesReducer = (
         total: state.total,
         total_pages: state.total_pages,
       };
+    case SortUserActionTypes.SEARCH_USERS:
+      debugger;
+      return {
+        state: [
+          ...state.state.slice().filter((user) => {
+            switch (action.payload) {
+              case "email":
+                return (
+                  user.email
+                    .toLocaleLowerCase()
+                    .indexOf(action.data.toLocaleLowerCase()) > -1
+                );
+              case "first_name":
+                return (
+                  user.first_name
+                    .toLocaleLowerCase()
+                    .indexOf(action.data.toLocaleLowerCase()) > -1
+                );
+              case "last_name":
+                return (
+                  user.last_name
+                    .toLocaleLowerCase()
+                    .indexOf(action.data.toLocaleLowerCase()) > -1
+                );
+              default:
+                return user;
+            }
+          }),
+        ],
+        removeUser: null,
+        loading: false,
+        error: state.error,
+        sort: state.sort,
+        page: state.page,
+        per_page: state.per_page,
+        total: state.total,
+        total_pages: state.total_pages,
+      };
     default:
       return state;
   }

@@ -109,9 +109,15 @@ export type RemoveAction =
 
 export enum SortUserActionTypes {
   SORT_USER = "SORT_USER",
+  SEARCH_USERS = "SEARCH_USERS",
 }
-interface SortUserErrorAction {
+interface SortUserAction {
   type: SortUserActionTypes.SORT_USER;
   payload: string;
 }
-export type SortAction = SortUserErrorAction;
+interface SearchUserAction {
+  type: SortUserActionTypes.SEARCH_USERS;
+  payload: string;
+  data: string;
+}
+export type SortAction = SortUserAction | SearchUserAction;

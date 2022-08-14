@@ -57,3 +57,8 @@ export const setSortUsers = (payload: string) => ({
   type: SortUserActionTypes.SORT_USER,
   payload,
 });
+export const setSearchtUsers = (payload: string, data: string) => ({
+  type: SortUserActionTypes.SEARCH_USERS,
+  payload,
+  data,
+});
